@@ -1,0 +1,165 @@
+﻿<Window x:Class="TravelPal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelPal"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="MintCream" Offset="0"/>
+                <GradientStop Color="MediumSlateBlue" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Border 
+            Background="MintCream" 
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Grid.Row="1"
+            Grid.RowSpan="7"
+            BorderThickness="3"
+            CornerRadius="16"
+            />
+        <Label 
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Content="TravelPal"
+            FontFamily="Arial"
+            FontWeight="Bold"
+            FontSize="40"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Foreground="MintCream"
+            />
+        <Label 
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Content="Login"
+            FontWeight="Bold"
+            FontSize="30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Foreground="MediumSlateBlue"
+            />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="Username"
+            Margin="10,0"
+            FontWeight="Bold"
+            FontSize="16"
+            VerticalAlignment="Center"
+            Foreground="MediumSlateBlue"
+            
+            />
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="Password"
+            Margin="10,0"
+            FontWeight="Bold"
+            FontSize="16"
+            VerticalAlignment="Center"
+            Foreground="MediumSlateBlue"
+            
+            />
+
+        <TextBlock
+            Name="txtLoginWarning"
+            Grid.Row="7"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Text="Wrong username or password!"
+            Margin="10,0"
+            FontWeight="Bold"
+            FontSize="12"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Foreground="Crimson"
+            
+            />
+
+        <TextBox
+            Name="txtUsername"
+            Grid.Row="3"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Background="Transparent"
+            BorderBrush="MediumSlateBlue"
+            BorderThickness="0, 0, 0, 1"
+            Margin="10 0"
+            Padding="0"
+            FontSize="16"
+            VerticalContentAlignment="Bottom"
+            />
+        <PasswordBox
+            Name="txtPassword"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Background="Transparent"
+            BorderBrush="MediumSlateBlue"
+            BorderThickness="0, 0, 0, 1"
+            Margin="10 0"
+            Padding="0"
+            FontSize="16"
+            VerticalContentAlignment="Bottom"
+            />
+
+        <Button
+            Name="btnLogin"
+            Grid.Column="1"
+            Grid.Row="6"
+            Margin="10,4"
+            Background="MediumSlateBlue"
+            Foreground="MintCream"
+            Content="Login"
+            BorderBrush="MintCream"
+            BorderThickness="2" Click="btnLogin_Click"
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button
+            Name="btnRegister"
+            Grid.Column="2"
+            Grid.Row="6"
+            Margin="10,4"
+            Background="DarkSlateBlue"
+            Foreground="MintCream"
+            Content="Register"
+            BorderBrush="MintCream"
+            BorderThickness="2" Click="btnRegister_Click"
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>
