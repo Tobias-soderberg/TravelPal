@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using static TravelPal.UserManager;
 
 namespace TravelPal
 {
@@ -8,7 +7,7 @@ namespace TravelPal
         public MainWindow()
         {
             InitializeComponent();
-            txtLoginWarning.Visibility = Visibility.Hidden;
+            txtLoginWarning.Visibility = Visibility.Hidden;  //Added to still see it in window view
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -22,7 +21,7 @@ namespace TravelPal
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Password.ToString().Trim();
-            if (SignInUser(username, password, out IUser? user))
+            if (UserManager.SignInUser(username, password, out IUser? user))
             {
 
                 TravelsWindow travelWindow = new TravelsWindow(user!);

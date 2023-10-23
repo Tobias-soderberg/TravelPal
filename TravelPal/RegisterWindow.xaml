@@ -91,7 +91,9 @@
             Grid.Row="8"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            Text="User already exists, please choose another username!"
+            Text="Invalid input! User already exists or the username (3 letters) and password (5 symbols) not long enough!"
+            TextWrapping="Wrap"
+            TextAlignment="Center"
             Margin="10,0"
             FontWeight="Bold"
             FontSize="10"
@@ -146,7 +148,7 @@
             Foreground="MintCream"
             Content="Register"
             BorderBrush="MintCream"
-            BorderThickness="2"
+            BorderThickness="2" Click="btnRegister_Click"
             >
             <Button.Resources>
                 <Style TargetType="Border">

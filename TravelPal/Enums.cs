@@ -1,6 +1,6 @@
 ﻿public enum Country
 {
-    AFGHANISTAN,
+    AFGHANISTAN = 1,
     ALBANIA,
     ALGERIA,
     ANDORRA,
