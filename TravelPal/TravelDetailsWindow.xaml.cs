@@ -14,7 +14,7 @@ namespace TravelPal
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            TravelsWindow travelsWindow = new TravelsWindow();
+            TravelsWindow travelsWindow = new TravelsWindow(UserManager.SignedInUser);
             travelsWindow.Show();
             Close();
         }

@@ -7,7 +7,7 @@ namespace TravelPal
     /// </summary>
     public partial class TravelsWindow : Window
     {
-        public TravelsWindow()
+        public TravelsWindow(IUser user)
         {
             InitializeComponent();
         }

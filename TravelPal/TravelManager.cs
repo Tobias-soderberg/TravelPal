@@ -2,7 +2,7 @@
 
 namespace TravelPal
 {
-    public static class WorkManager
+    public static class TravelManager
     {
         public static List<Travel> travels = new();
 

@@ -1,10 +1,8 @@
 ﻿using System.Windows;
+using static TravelPal.UserManager;
 
 namespace TravelPal
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -18,14 +16,20 @@ namespace TravelPal
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
             Close();
-
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            TravelsWindow travelWindow = new TravelsWindow();
-            travelWindow.Show();
-            Close();
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Password.ToString().Trim();
+            if (SignInUser(username, password, out IUser? user))
+            {
+
+                TravelsWindow travelWindow = new TravelsWindow(user!);
+                travelWindow.Show();
+                Close();
+            }
+            txtLoginWarning.Visibility = Visibility.Visible;
         }
     }
 }

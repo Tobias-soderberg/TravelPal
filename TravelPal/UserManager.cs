@@ -2,41 +2,42 @@
 
 namespace TravelPal
 {
-    public class UserManager
+    public static class UserManager
     {
         public static List<IUser> users = new();
-        public IUser SignedInUser { get; set; }
+        public static IUser SignedInUser { get; set; }
 
-        public void AddUser()
+        public static void AddUser()
         {
 
         }
 
-        public void RemoveUser()
+        public static void RemoveUser()
         {
 
         }
 
-        public bool UpdateUsername(IUser user, string newUsername)
-        {
-            return true;
-        }
-
-        bool ValidateUsername(string username)
+        public static bool UpdateUsername(IUser user, string newUsername)
         {
             return true;
         }
-        public bool SignInUser(string username, string password)
+
+        static bool ValidateUsername(string username)
+        {
+            return true;
+        }
+        public static bool SignInUser(string username, string password, out IUser? signedInUser)
         {
             foreach (IUser user in users)
             {
                 if (user.Username == username && user.Password == password)
                 {
                     SignedInUser = user;
+                    signedInUser = user;
                     return true;
                 }
             }
-
+            signedInUser = null;
             return false;
         }
     }

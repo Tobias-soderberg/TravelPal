@@ -1,6 +1,6 @@
 ﻿namespace TravelPal
 {
-    internal interface IPackingListItem
+    public interface IPackingListItem
     {
         public string Name { get; set; }
 
