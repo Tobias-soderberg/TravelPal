@@ -2,7 +2,7 @@
 
 namespace TravelPal
 {
-    internal class User : IUser
+    public class User : IUser
     {
         public string Username { get; set; }
         public string Password { get; set; }

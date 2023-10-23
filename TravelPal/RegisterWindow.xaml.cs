@@ -36,7 +36,7 @@ namespace TravelPal
             if (ValidateRegistration(username, password))
             {
                 Country country = (Country)cbCountry.SelectedIndex; //Using the index to get correct country from the list, Could do with ComboBox Item, but feels like this is a valid and effective use of Enums
-                UserManager.users.Add(new User()
+                UserManager.AddUser(new User()
                 {
                     Username = username,
                     Password = password,

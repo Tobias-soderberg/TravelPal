@@ -14,7 +14,7 @@
 
         public string GetInfo()
         {
-            return "";
+            return $"{Name}, Required: {Required}";
         }
     }
 }

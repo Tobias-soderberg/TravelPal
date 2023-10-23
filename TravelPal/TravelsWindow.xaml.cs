@@ -12,7 +12,7 @@ namespace TravelPal
         public TravelsWindow(IUser user)
         {
             InitializeComponent();
-
+            lblUsername.Content = user.Username;
             AddTravels();
 
         }
@@ -28,7 +28,7 @@ namespace TravelPal
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
         {
-            UserDetailsWindow userDetailsWindow = new UserDetailsWindow();
+            UserDetailsWindow userDetailsWindow = new UserDetailsWindow(UserManager.SignedInUser);
             userDetailsWindow.Show();
             Close();
         }
@@ -83,7 +83,15 @@ namespace TravelPal
                 MessageBox.Show("No travel selected!");
                 return;
             }
+            ListViewItem item = (ListViewItem)lstTravels.SelectedItem;
+            TravelDetailsWindow travelDetailsWindow = new TravelDetailsWindow((Travel)item.Tag);
+            travelDetailsWindow.Show();
+            Close();
+        }
 
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello!\nTo add a new travel, click the 'Add travel' button and fill all the information\nNeed more help? Visit our page at www.travelpal.com/help\nGood Luck!", "Information");
         }
     }
 }

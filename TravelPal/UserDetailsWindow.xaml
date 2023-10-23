@@ -78,6 +78,23 @@
             FontWeight="Bold"
             Foreground="MediumSlateBlue"
             />
+        
+        <TextBlock
+            Name="txtChangeWarning"
+            Grid.Row="6"
+            Grid.Column="1"
+            Grid.ColumnSpan="4"
+            Text="Invalid input! User already exists or the username (3 letters) and password (5 symbols) not long enough!"
+            TextWrapping="Wrap"
+            TextAlignment="Center"
+            Margin="10,0"
+            FontWeight="Bold"
+            FontSize="10"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Foreground="Crimson"
+            
+            />
 
         <TextBox
             Name="txtUsername"
@@ -115,7 +132,7 @@
             Background="MintCream"
             Foreground="MediumSlateBlue"
             FontSize="20"
-            FontWeight="Bold"
+            FontWeight="Bold" Click="btnSave_Click"
             >
 
             <Button.Resources>
@@ -144,6 +161,6 @@
                 </Style>
             </Button.Resources>
         </Button>
-
+        
     </Grid>
 </Window>

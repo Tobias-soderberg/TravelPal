@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelPal"
         mc:Ignorable="d"
-        Title="TravelDetailsWindow" Height="450" Width="800">
+        Title="TravelDetailsWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>
@@ -111,7 +111,7 @@
             Grid.Column="2"
             Height="20"
             VerticalContentAlignment="Center"
-            IsEnabled="False"
+            IsReadOnly="True"
             FontWeight="Bold"
             Background="MintCream"
             Margin="10 0"
@@ -122,7 +122,7 @@
             Grid.Column="2"
             Height="20"
             VerticalContentAlignment="Center"
-            IsEnabled="False"
+            IsReadOnly="True"
             FontWeight="Bold"
             Background="MintCream"
             Margin="10 0"
@@ -133,7 +133,7 @@
             Grid.Column="2"
             Height="20"
             VerticalContentAlignment="Center"
-            IsEnabled="False"
+            IsReadOnly="True"
             FontWeight="Bold"
             Background="MintCream"
             Margin="10 0"
@@ -144,7 +144,7 @@
             Grid.Column="2"
             Height="20"
             VerticalContentAlignment="Center"
-            IsEnabled="False"
+            IsReadOnly="True"
             FontWeight="Bold"
             Background="MintCream"
             Margin="10 0"
@@ -152,13 +152,16 @@
         <TextBox
             Name="txtExtraInfo"
             Grid.Row="6"
+            Grid.RowSpan="2"
             Grid.Column="2"
             Height="20"
-            VerticalContentAlignment="Center"
-            IsEnabled="False"
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
             FontWeight="Bold"
             Background="MintCream"
-            Margin="10 0"
+            Margin="10,20"
+            VerticalScrollBarVisibility="Auto"
             />
 
         <ListView

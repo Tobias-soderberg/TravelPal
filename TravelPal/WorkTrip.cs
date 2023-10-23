@@ -13,7 +13,7 @@ namespace TravelPal
 
         public override string GetInfo()
         {
-            return base.GetInfo();
+            return MeetingDetails;
         }
     }
 }
