@@ -12,6 +12,11 @@ namespace TravelPal
             InitializeComponent();
         }
 
-
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            TravelsWindow travelsWindow = new TravelsWindow();
+            travelsWindow.Show();
+            Close();
+        }
     }
 }

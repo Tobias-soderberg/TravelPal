@@ -28,7 +28,168 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+
+        <Label
+            Name="lblHeader"
+            Content="Header"
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="4"
+            HorizontalAlignment="Center"
+            FontWeight="Bold"
+            FontSize="30"
+            />
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="Country:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontWeight="Bold"
+            FontSize="16"
+            Margin="10"
+            />
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="City:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontWeight="Bold"
+            FontSize="16"
+            Margin="10"
+            />
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="Travelers:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontWeight="Bold"
+            FontSize="16"
+            Margin="10"
+            />
+        <TextBlock
+            Grid.Row="5"
+            Grid.Column="1"
+            Text="Type:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontWeight="Bold"
+            FontSize="16"
+            Margin="10"
+            />
+        <TextBlock
+            Grid.Row="6"
+            Grid.Column="1"
+            Text="ExtraInfo:"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            FontWeight="Bold"
+            FontSize="16"
+            Margin="10"
+            />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="3"
+            Grid.ColumnSpan="2"
+            Text="Packing list:"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            FontWeight="Bold"
+            FontSize="16"
+            />
+
+        <TextBox
+            Name="txtCountry"
+            Grid.Row="2"
+            Grid.Column="2"
+            Height="20"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"
+            FontWeight="Bold"
+            Background="MintCream"
+            Margin="10 0"
+            />
+        <TextBox
+            Name="txtCity"
+            Grid.Row="3"
+            Grid.Column="2"
+            Height="20"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"
+            FontWeight="Bold"
+            Background="MintCream"
+            Margin="10 0"
+            />
+        <TextBox
+            Name="txtTravelers"
+            Grid.Row="4"
+            Grid.Column="2"
+            Height="20"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"
+            FontWeight="Bold"
+            Background="MintCream"
+            Margin="10 0"
+            />
+        <TextBox
+            Name="txtType"
+            Grid.Row="5"
+            Grid.Column="2"
+            Height="20"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"
+            FontWeight="Bold"
+            Background="MintCream"
+            Margin="10 0"
+            />
+        <TextBox
+            Name="txtExtraInfo"
+            Grid.Row="6"
+            Grid.Column="2"
+            Height="20"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"
+            FontWeight="Bold"
+            Background="MintCream"
+            Margin="10 0"
+            />
+
+        <ListView
+            Name="lstPacklist"
+            Grid.Row="2"
+            Grid.RowSpan="5"
+            Grid.Column="3"
+            Grid.ColumnSpan="2"
+            Margin="30"
+            
+            />
+
+        <Button
+            Name="btnBack"
+            Grid.Column="4"
+            Grid.Row="7"
+            Margin="10"
+            Background="MintCream"
+            Foreground="MediumSlateBlue"
+            Content="Back"
+            FontWeight="Bold" 
+            Click="btnBack_Click"
+            
+            >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+
     </Grid>
 </Window>

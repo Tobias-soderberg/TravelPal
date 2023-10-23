@@ -40,7 +40,7 @@
             VerticalContentAlignment="Center"
             FontSize="30"
             FontWeight="Bold"
-            Foreground="MintCream"
+            Foreground="Black"
             />
 
         <TextBlock

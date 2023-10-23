@@ -93,26 +93,7 @@
             </Button.Resources>
 
         </Button>
-        <Button
-            Name="btnHelp"
-            Grid.Column="1"
-            Grid.Row="3"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Content="Help"
-            Width="90"
-            Height="40"
-            Background="MintCream"
-            Foreground="MediumSlateBlue"
-            FontWeight="Bold"
-            >
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
-                </Style>
-            </Button.Resources>
 
-        </Button>
         <Button
             Name="btnSignOut"
             Grid.Column="1"
