@@ -1,4 +1,4 @@
-﻿enum Country
+﻿public enum Country
 {
     AFGHANISTAN,
     ALBANIA,
@@ -192,7 +192,7 @@
     ZIMBABWE,
 }
 
-enum CountryEU
+public enum EuropeanCountry
 {
     AUSTRIA,
     BELGIUM,
