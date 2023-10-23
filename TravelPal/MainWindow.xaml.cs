@@ -7,6 +7,10 @@ namespace TravelPal
         public MainWindow()
         {
             InitializeComponent();
+            if (UserManager.users.Count == 0)
+            {
+                UserManager.initiateUsers();
+            }
             txtLoginWarning.Visibility = Visibility.Hidden;  //Added to still see it in window view
         }
 
