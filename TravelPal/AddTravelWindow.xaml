@@ -139,6 +139,22 @@
             FontSize="16"
             />
 
+        <TextBlock
+            Name="txtAddTravelWarning"
+            Grid.Row="8"
+            Grid.Column="3"
+            Text="Invalid inputs!!"
+            TextWrapping="Wrap"
+            TextAlignment="Center"
+            Margin="10,0"
+            FontWeight="Bold"
+            FontSize="10"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Foreground="Crimson"
+            
+            />
+
         <ComboBox
             Name="cbCountry"
             Grid.Row="2"
@@ -250,7 +266,7 @@
             Background="MintCream"
             Foreground="MediumSlateBlue"
             Content="Add travel"
-            FontWeight="Bold"
+            FontWeight="Bold" Click="btnAddTravel_Click"
             >
             <Button.Resources>
                 <Style TargetType="Border">
@@ -267,7 +283,7 @@
             Background="MintCream"
             Foreground="MediumSlateBlue"
             Content="Add Item"
-            FontWeight="Bold"
+            FontWeight="Bold" Click="btnAddItem_Click"
             >
             <Button.Resources>
                 <Style TargetType="Border">
@@ -302,7 +318,7 @@
             Foreground="MediumSlateBlue"
             Content="Remove"
             FontWeight="Bold"
-            IsEnabled="False"
+            IsEnabled="False" Click="btnRemove_Click"
             >
             <Button.Resources>
                 <Style TargetType="Border">
