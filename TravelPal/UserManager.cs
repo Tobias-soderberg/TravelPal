@@ -101,9 +101,10 @@ namespace TravelPal
                     }, user, "Work christmas party, all will gather in Copenhagen, +1 in invitaton")
                 };
 
+            int i = user.Travels.Count;
             foreach (Travel travel in user.Travels)
             {
-                TravelManager.AddTravel(travel);
+                TravelManager.travels.Add(travel);
             }
             AddUser(user);
         }

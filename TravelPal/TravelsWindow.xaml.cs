@@ -12,6 +12,10 @@ namespace TravelPal
         public TravelsWindow()
         {
             InitializeComponent();
+            if (UserManager.SignedInUser.GetType() == typeof(Admin))
+            {
+                btnAddTravel.IsEnabled = false;
+            }
             lblUsername.Content = UserManager.SignedInUser.Username;
             AddTravels();
 

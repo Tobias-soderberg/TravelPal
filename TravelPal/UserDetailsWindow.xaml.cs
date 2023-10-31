@@ -37,7 +37,9 @@ namespace TravelPal
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             IUser user = UserManager.SignedInUser;
-            if (ValidateChange(txtUsername.Text, txtPassword.Password.ToString()))
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Password.ToString().Trim();
+            if (ValidateChange(username, password))
             {
                 user.Password = txtPassword.Password.ToString();
                 user.Username = txtUsername.Text;
@@ -54,8 +56,13 @@ namespace TravelPal
         {
             if (username.Length > 2 && password.Length > 4 && cbCountry.SelectedIndex > 0)
             {
+                if (UserManager.SignedInUser.Username == username)
+                {
+                    return true;
+                }
                 foreach (IUser user in UserManager.users)
                 {
+
                     if (user.Username == username)
                     {
                         return false;

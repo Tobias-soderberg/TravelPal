@@ -10,7 +10,6 @@ namespace TravelPal
     /// </summary>
     public partial class AddTravelWindow : Window
     {
-        List<IPackingListItem> packingList = new();
         public AddTravelWindow()
         {
             InitializeComponent();
@@ -78,6 +77,13 @@ namespace TravelPal
             {
                 string destination = txtCity.Text;
                 int travellers = int.Parse(txtTravelers.Text);
+
+                List<IPackingListItem> packingList = new();
+                foreach (ListViewItem item in lstPacking.Items)
+                {
+                    packingList.Add((IPackingListItem)item.Tag);
+                }
+
                 Travel travel;
 
                 if (cbWorkVacation.SelectedIndex == 0) //0 = Work
@@ -100,21 +106,48 @@ namespace TravelPal
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            if (lstPacking.SelectedIndex == -1)
+            if (lstPacking.SelectedIndex != -1)
             {
-                return;
+                lstPacking.Items.Remove(lstPacking.SelectedItem);
+                if (lstPacking.Items.Count == 0)
+                {
+                    btnRemove.IsEnabled = false;
+                }
             }
-            lstPacking.Items.Remove(lstPacking.SelectedItem);
+
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            if (IsValidAddInputs())
-            {
+            string packItem = txtPackItem.Text.Trim();
+            string quantityString = txtPackNumber.Text.Trim();
+            bool required = (bool)cboxRequired.IsChecked!;
+            bool travelDocument = (bool)cboxTravelDocument.IsChecked!;
 
+            if (!string.IsNullOrEmpty(packItem))
+            {
+                IPackingListItem newItem;
+                ListViewItem item = new();
+                if (travelDocument)
+                {
+                    newItem = new TravelDocument(packItem, required);
+                }
+                else if (int.TryParse(quantityString, out int quantity))
+                {
+                    newItem = new OtherItem(packItem, quantity);
+                }
+                else
+                {
+                    txtAddTravelWarning.Visibility = Visibility.Visible;
+                    return;
+                }
+                btnRemove.IsEnabled = true;
+                item.Tag = newItem;
+                item.Content = newItem.GetInfo();
+                lstPacking.Items.Add(item);
+                lstPacking.Items.Refresh();
             }
-            ListViewItem item = new();
-            lstPacking.Items.Add(item);
+
         }
 
         bool IsValidInputs()
@@ -124,28 +157,6 @@ namespace TravelPal
             string travellersString = txtTravelers.Text.Trim();
 
             return (city.Length > 0 && int.TryParse(travellersString, out _) && cbCountry.SelectedIndex > 0 && cbWorkVacation.SelectedIndex != -1) ? true : false;
-        }
-
-        bool IsValidAddInputs()
-        {
-            string packItem = txtPackItem.Text.Trim();
-            string quantityString = txtPackNumber.Text.Trim();
-            bool required = (bool)cboxRequired.IsChecked!;
-            bool travelDocument = (bool)cboxTravelDocument.IsChecked!;
-
-            if (!string.IsNullOrEmpty(packItem))
-            {
-                if (travelDocument)
-                {
-
-                }
-                else if (int.TryParse(quantityString, out int quantity))
-                {
-
-                }
-            }
-
-            return false;
         }
     }
 }
