@@ -9,10 +9,10 @@ namespace TravelPal
     /// </summary>
     public partial class TravelsWindow : Window
     {
-        public TravelsWindow(IUser user)
+        public TravelsWindow()
         {
             InitializeComponent();
-            lblUsername.Content = user.Username;
+            lblUsername.Content = UserManager.SignedInUser.Username;
             AddTravels();
 
         }
@@ -62,6 +62,7 @@ namespace TravelPal
                 item.Content = travel.Destination + ", " + travel.Country;
                 lstTravels.Items.Add(item);
             }
+
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -71,10 +72,19 @@ namespace TravelPal
                 MessageBox.Show("No travel selected!");
                 return;
             }
+
             ListViewItem item = (ListViewItem)lstTravels.SelectedItem;
-            TravelManager.travels.Remove((Travel)item.Tag);
-            lstTravels.Items.Remove(item);
+            Travel selectedTravel = (Travel)item.Tag;
+
+            TravelManager.travels.Remove(selectedTravel); //Remove from all Travels list
+
+            User user = selectedTravel.User;
+            user.Travels.Remove(selectedTravel); //Remove from user Travels list
+
+            lstTravels.Items.Remove(item); //Remove from ListView
         }
+
+
 
         private void btnDetail_Click(object sender, RoutedEventArgs e)
         {

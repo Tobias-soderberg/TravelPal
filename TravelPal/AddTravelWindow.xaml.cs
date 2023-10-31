@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace TravelPal
 {
@@ -66,7 +67,7 @@ namespace TravelPal
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            TravelsWindow travelsWindow = new TravelsWindow(UserManager.SignedInUser);
+            TravelsWindow travelsWindow = new TravelsWindow();
             travelsWindow.Show();
             Close();
         }
@@ -77,19 +78,24 @@ namespace TravelPal
             {
                 string destination = txtCity.Text;
                 int travellers = int.Parse(txtTravelers.Text);
+                Travel travel;
 
                 if (cbWorkVacation.SelectedIndex == 0) //0 = Work
                 {
-                    Travel travel = new WorkTrip(destination, (Country)cbCountry.SelectedIndex, travellers, packingList, txtMeetingInfo.Text);
+                    travel = new WorkTrip(destination, (Country)cbCountry.SelectedIndex, travellers, packingList, (User)UserManager.SignedInUser, txtMeetingInfo.Text);
+                    TravelManager.AddTravel(travel);
                 }
                 else if (cbWorkVacation.SelectedIndex == 1) //1 = Vacation
                 {
-                    Travel travel = new Vacation(destination, (Country)cbCountry.SelectedIndex, travellers, packingList, (bool)cboxAllInclusive.IsChecked!);
+                    travel = new Vacation(destination, (Country)cbCountry.SelectedIndex, travellers, packingList, (User)UserManager.SignedInUser, (bool)cboxAllInclusive.IsChecked!);
+                    TravelManager.AddTravel(travel);
                 }
-
-                return;
+                TravelsWindow travelsWindow = new TravelsWindow();
+                travelsWindow.Show();
+                Close();
             }
             txtAddTravelWarning.Visibility = Visibility.Visible;
+
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -99,12 +105,16 @@ namespace TravelPal
                 return;
             }
             lstPacking.Items.Remove(lstPacking.SelectedItem);
-
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
+            if (IsValidAddInputs())
+            {
 
+            }
+            ListViewItem item = new();
+            lstPacking.Items.Add(item);
         }
 
         bool IsValidInputs()
@@ -114,6 +124,28 @@ namespace TravelPal
             string travellersString = txtTravelers.Text.Trim();
 
             return (city.Length > 0 && int.TryParse(travellersString, out _) && cbCountry.SelectedIndex > 0 && cbWorkVacation.SelectedIndex != -1) ? true : false;
+        }
+
+        bool IsValidAddInputs()
+        {
+            string packItem = txtPackItem.Text.Trim();
+            string quantityString = txtPackNumber.Text.Trim();
+            bool required = (bool)cboxRequired.IsChecked!;
+            bool travelDocument = (bool)cboxTravelDocument.IsChecked!;
+
+            if (!string.IsNullOrEmpty(packItem))
+            {
+                if (travelDocument)
+                {
+
+                }
+                else if (int.TryParse(quantityString, out int quantity))
+                {
+
+                }
+            }
+
+            return false;
         }
     }
 }

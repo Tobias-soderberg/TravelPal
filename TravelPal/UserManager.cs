@@ -49,45 +49,22 @@ namespace TravelPal
             }
             return false;
         }
-        public static bool SignInUser(string username, string password, out IUser? signedInUser)
+        public static bool SignInUser(string username, string password)
         {
             foreach (IUser user in users)
             {
                 if (user.Username == username && user.Password == password)
                 {
                     SignedInUser = user;
-                    signedInUser = user;
                     return true;
                 }
             }
-            signedInUser = null;
+            SignedInUser = null;
             return false;
         }
 
         public static void initiateUsers()
         {
-            Travel tempTravel1 = new Vacation("Porto", Country.PORTUGAL, 1, new List<IPackingListItem>
-                        {
-                            new TravelDocument("Passport", false),
-                            new OtherItem("Swimsuit", 1),
-                            new OtherItem("Hoodie",10),
-                            new OtherItem("Sunglasses", 1),
-                            new OtherItem("Umbrella", 2)
-                        }, true);
-            TravelManager.travels.Add(tempTravel1);
-            Travel tempTravel2 = new WorkTrip("Copenhagen", Country.DENMARK, 2, new List<IPackingListItem>
-                    {
-                            new TravelDocument("Passport", false),
-                            new OtherItem("Jacket", 2),
-                            new OtherItem("Pair of Gloves",2),
-                            new OtherItem("Favorite snacks", 10),
-                            new OtherItem("Party hat", 25)
-
-                    }, "Work christmas party, all will gather in Copenhagen, +1 in invitaton");
-            TravelManager.travels.Add(tempTravel2);
-
-
-
             users.Add(new Admin()
             {
                 Username = "admin",
@@ -95,18 +72,40 @@ namespace TravelPal
                 Location = Country.SWEDEN,
             });
 
-            users.Add(new User()
+            User user = new User()
             {
                 Username = "user",
                 Password = "password",
-                Location = Country.DENMARK,
-                Travels = new List<Travel>()
-                {
-                    tempTravel1,
-                    tempTravel2
-                }
-            });
-        }
+                Location = Country.DENMARK
+            };
 
+            user.Travels = new List<Travel>()
+                {
+                    new Vacation("Porto", Country.PORTUGAL, 1, new List<IPackingListItem>
+                        {
+                            new TravelDocument("Passport", false),
+                            new OtherItem("Swimsuit", 1),
+                            new OtherItem("Hoodie",10),
+                            new OtherItem("Sunglasses", 1),
+                            new OtherItem("Umbrella", 2)
+                        }, user, true),
+
+                    new WorkTrip("Copenhagen", Country.DENMARK, 2, new List<IPackingListItem>
+                    {
+                            new TravelDocument("Passport", false),
+                            new OtherItem("Jacket", 2),
+                            new OtherItem("Pair of Gloves",2),
+                            new OtherItem("Favorite snacks", 10),
+                            new OtherItem("Party hat", 25)
+
+                    }, user, "Work christmas party, all will gather in Copenhagen, +1 in invitaton")
+                };
+
+            foreach (Travel travel in user.Travels)
+            {
+                TravelManager.AddTravel(travel);
+            }
+            AddUser(user);
+        }
     }
 }

@@ -8,7 +8,12 @@ namespace TravelPal
 
         public static void AddTravel(Travel travel)
         {
-            travels.Add(travel);
+            if (travel != null)
+            {
+                travels.Add(travel);
+                travel.User.Travels.Add(travel);
+            }
+
         }
         public static void RemoveTravel(Travel travel)
         {

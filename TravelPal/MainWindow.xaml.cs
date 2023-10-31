@@ -25,10 +25,10 @@ namespace TravelPal
         {
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Password.ToString().Trim();
-            if (UserManager.SignInUser(username, password, out IUser? user))
+            if (UserManager.SignInUser(username, password))
             {
 
-                TravelsWindow travelWindow = new TravelsWindow(user!);
+                TravelsWindow travelWindow = new TravelsWindow();
                 travelWindow.Show();
                 Close();
             }

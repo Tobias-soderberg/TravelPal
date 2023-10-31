@@ -6,7 +6,7 @@ namespace TravelPal
     {
         public string MeetingDetails { get; set; }
 
-        public WorkTrip(string destination, Country country, int travellers, List<IPackingListItem> packingList, string meetingDetails) : base(destination, country, travellers, packingList)
+        public WorkTrip(string destination, Country country, int travellers, List<IPackingListItem> packingList, User user, string meetingDetails) : base(destination, country, travellers, packingList, user)
         {
             MeetingDetails = meetingDetails;
         }
