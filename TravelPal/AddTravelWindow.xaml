@@ -160,7 +160,7 @@
             Grid.Row="2"
             Grid.Column="2"
             Height="25"
-            VerticalContentAlignment="Center"
+            VerticalContentAlignment="Center" SelectionChanged="cbCountry_SelectionChanged"
             />
         <ComboBox
             Name="cbWorkVacation"

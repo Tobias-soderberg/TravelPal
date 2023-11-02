@@ -25,6 +25,12 @@ namespace TravelPal
             cbWorkVacation.Items.Add("Vacation");
 
             txtAddTravelWarning.Visibility = Visibility.Hidden;
+
+            bool userInEU = Enum.IsDefined(typeof(EuropeanCountry), UserManager.SignedInUser.Location.ToString());//Readability
+            if (!userInEU)
+            {
+                AddPassport(true);
+            }
         }
 
         private void cboxTravelDocument_Checked(object sender, RoutedEventArgs e)
@@ -124,6 +130,12 @@ namespace TravelPal
             bool required = (bool)cboxRequired.IsChecked!;
             bool travelDocument = (bool)cboxTravelDocument.IsChecked!;
 
+            if (packItem == "Passport")
+            {
+                MessageBox.Show("Passport already added!");
+                return;
+            }
+
             if (!string.IsNullOrEmpty(packItem))
             {
                 IPackingListItem newItem;
@@ -150,6 +162,28 @@ namespace TravelPal
 
         }
 
+        private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            bool userInEU = Enum.IsDefined(typeof(EuropeanCountry), UserManager.SignedInUser.Location.ToString());
+            if (cbCountry.SelectedIndex < 1 || !userInEU)
+            {
+                return;
+            }
+            Country country = (Country)cbCountry.SelectedItem;
+            bool isEUCountrySelected = Enum.IsDefined(typeof(EuropeanCountry), country.ToString());
+
+            RemovePassport();
+            if (!isEUCountrySelected || (isEUCountrySelected && !userInEU))
+            {
+                AddPassport(true);
+            }
+            else
+            {
+                AddPassport(false);
+            }
+        }
+
         bool IsValidInputs()
         {
             string city = txtCity.Text.Trim();
@@ -157,6 +191,34 @@ namespace TravelPal
             string travellersString = txtTravelers.Text.Trim();
 
             return (city.Length > 0 && int.TryParse(travellersString, out _) && cbCountry.SelectedIndex > 0 && cbWorkVacation.SelectedIndex != -1) ? true : false;
+        }
+
+        void AddPassport(bool required)
+        {
+            ListViewItem item = new ListViewItem();
+            IPackingListItem passport = new TravelDocument("Passport", required);
+            item.Tag = passport;
+            item.Content = passport.GetInfo();
+            lstPacking.Items.Add(item);
+        }
+
+        void RemovePassport()
+        {
+            ListViewItem? itemToRemove = null;
+            foreach (ListViewItem item in lstPacking.Items)
+            {
+                IPackingListItem packItem = (IPackingListItem)item.Tag;
+                if (packItem.GetType() == typeof(TravelDocument) && packItem.Name == "Passport")
+                {
+                    itemToRemove = item;
+                    break;
+                }
+            }
+            if (itemToRemove != null)
+            {
+                lstPacking.Items.Remove(itemToRemove);
+                lstPacking.Items.Refresh();
+            }
         }
     }
 }
