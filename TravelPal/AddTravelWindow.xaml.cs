@@ -114,8 +114,19 @@ namespace TravelPal
         {
             if (lstPacking.SelectedIndex != -1)
             {
+                ListViewItem item = (ListViewItem)lstPacking.SelectedItem;
+                IPackingListItem selectedItem = (IPackingListItem)item.Tag;
+                if (selectedItem.Name == "Passport")
+                {
+                    MessageBox.Show("Cant remove Passport!");
+                    return;
+                }
                 lstPacking.Items.Remove(lstPacking.SelectedItem);
-                if (lstPacking.Items.Count == 0)
+                if (IsPassportInList() && lstPacking.Items.Count == 1)
+                {
+                    btnRemove.IsEnabled = false;
+                }
+                else if (lstPacking.Items.Count == 0)
                 {
                     btnRemove.IsEnabled = false;
                 }
@@ -219,6 +230,18 @@ namespace TravelPal
                 lstPacking.Items.Remove(itemToRemove);
                 lstPacking.Items.Refresh();
             }
+        }
+        bool IsPassportInList()
+        {
+            foreach (ListViewItem item in lstPacking.Items)
+            {
+                IPackingListItem packItem = (IPackingListItem)item.Tag;
+                if (packItem.GetType() == typeof(TravelDocument) && packItem.Name == "Passport")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
